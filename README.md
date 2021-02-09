@@ -1,7 +1,7 @@
 # dtgen
 A minimalistic .desktop creator for GNOME
 
-This simple program takes command line arguaments and creates the contents of a .desktop file specified by the desktop entry specification (which is then can be piped, copied or whatever you want).
+This simple program written in C takes command line arguaments and creates the contents of a .desktop file specified by the desktop entry specification (which is then can be piped, copied or whatever you want).
 
 ## Currently available arguaments:
 + -C [category] add to category, default is none (multiple categories can be separated with a semicolon)
