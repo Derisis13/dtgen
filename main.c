@@ -7,7 +7,7 @@ void help(){
     printf("options:\n "
            "-C [category] add to category, default is none (multiple categories can be separated with a semicolon)\n "
            "-c [comment] add comment, default is none\n "
-           "-e [executable] specify executable, mandatory, spaces are replaced with '_' (check GNOME documentation for details)\n "
+           "-e [executable] specify executable, mandatory, (check desktop entry documentation for details: https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)\n "
            "-h display this help\n"
            "-i [icon] add icon by filename, default is none (icon from your current theme, from /usr/share/icons/hicolor/48x48/apps/ or from an absolute path)\n "
            "-n [name] specify name, mandatory");
