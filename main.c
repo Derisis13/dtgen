@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     }
     if (strcmp(argv[1], "-h")==0)
         help();
-    if (argc < 2){
+    if (argc < 4){
         printf("usage: \"dtgen -n name -e executable\" or \"dtgen -h\" for help\n");
         return 0;
     }
