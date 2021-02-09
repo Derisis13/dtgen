@@ -10,7 +10,7 @@ void help(){
            "-e [executable] specify executable, mandatory, (check desktop entry documentation for details: https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)\n "
            "-h display this help\n"
            "-i [icon] add icon by filename, default is none (icon from your current theme, from /usr/share/icons/hicolor/48x48/apps/ or from an absolute path)\n "
-           "-n [name] specify name, mandatory");
+           "-n [name] specify name, mandatory\n");
     exit(0);
 }
 
