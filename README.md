@@ -8,6 +8,6 @@ This simple program written in C takes command line arguaments and creates the c
 + -C [category] add to category, default is none (multiple categories can be separated with a semicolon)
 + -c [comment] add comment, default is none
 + -e [executable] specify executable, mandatory (check documentation for details: https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)
-+ -h display this help
++ -h display help
 + -i [icon] add icon by filename, default is none (icon from your current theme, from /usr/share/icons/hicolor/48x48/apps/ or from an absolute path)
 + -n [name] specify name, mandatory
