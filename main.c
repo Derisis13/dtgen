@@ -30,22 +30,58 @@ int main(int argc, char* argv[]) {
     char *blank="", *comment=blank, *category=blank, *executable=NULL, *icon=blank, *name=NULL, *appendix=blank;
     for (int i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "-c")==0) {
-            comment = argv[++i];
+            if (argv[++i]){
+                category = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i-1]);
+                exit (12);
+            }
         }
         else if (strcmp(argv[i], "-C")==0) {
-            category = argv[++i];
+            if (argv[++i]){
+                comment = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i-1]);
+                exit (12);
+            }
         }
         else if (strcmp(argv[i], "-e")==0) {
-            executable = argv[++i];
+            if (argv[++i]){
+                executable = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i-1]);
+                exit (12);
+            }
         }
         else if (strcmp(argv[i], "-i")==0) {
-            icon = argv[++i];
+            if (argv[++i]){
+                icon = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i-1]);
+                exit (12);
+            }
         }
         else if (strcmp(argv[i], "-n")==0) {
-            name = argv[++i];
+            if (argv[++i]){
+                name = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i]-1);
+                exit (12);
+            }
         }
         else if (strcmp(argv[i], "-a")==0) {
-            appendix = argv[++i];
+            if (argv[++i]){
+                appendix = argv[i];
+            }
+            else {
+                printf("missing option after %s\n", argv[i-1]);
+                exit (12);
+            }
         }
         else {
             printf("unexpected option: %s\n", argv[i]);
