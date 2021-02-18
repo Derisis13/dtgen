@@ -5,15 +5,27 @@
 
 void help(){
     printf("options:\n "
-           "-a [append] append any other string at the end of the file (eg. Terminal=true)"
-           "-C [category] add to category, default is none (multiple categories can be separated with a semicolon)\n "
-           "-c [comment] add comment, default is none\n "
+           "-a [append] append any other string at the end of the file (eg. Terminal=true)\n "
+           "-c [category] add to category, default is none (multiple categories can be separated with a semicolon)\n "
+           "-C [comment] add comment, default is none\n "
            "-e [executable] specify executable, mandatory, (check desktop entry documentation for details: https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)\n "
-           "-h display this help\n"
+           "-h display this help\n "
            "-i [icon] add icon by filename, default is none (icon from your current theme, from /usr/share/icons/hicolor/48x48/apps/ or from an absolute path)\n "
            "-n [name] specify name, mandatory\n");
     exit(0);
 }
+
+int argcomp(char** argv, int i, const char* const option, char** value){
+    if (strcmp(argv[i], option)==0) {
+        if (argv[++i]){
+            *value = argv[i];
+            return 1;
+        }
+            printf("missing option after %s\n", argv[i-1]);
+            exit (12);
+    }
+    return 0;
+};
 
 
 int main(int argc, char* argv[]) {
@@ -28,65 +40,15 @@ int main(int argc, char* argv[]) {
         return 0;
     }
     char *blank="", *comment=blank, *category=blank, *executable=NULL, *icon=blank, *name=NULL, *appendix=blank;
-    for (int i = 1; i < argc; ++i) {
-        if (strcmp(argv[i], "-c")==0) {
-            if (argv[++i]){
-                category = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i-1]);
-                exit (12);
-            }
-        }
-        else if (strcmp(argv[i], "-C")==0) {
-            if (argv[++i]){
-                comment = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i-1]);
-                exit (12);
-            }
-        }
-        else if (strcmp(argv[i], "-e")==0) {
-            if (argv[++i]){
-                executable = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i-1]);
-                exit (12);
-            }
-        }
-        else if (strcmp(argv[i], "-i")==0) {
-            if (argv[++i]){
-                icon = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i-1]);
-                exit (12);
-            }
-        }
-        else if (strcmp(argv[i], "-n")==0) {
-            if (argv[++i]){
-                name = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i]-1);
-                exit (12);
-            }
-        }
-        else if (strcmp(argv[i], "-a")==0) {
-            if (argv[++i]){
-                appendix = argv[i];
-            }
-            else {
-                printf("missing option after %s\n", argv[i-1]);
-                exit (12);
-            }
-        }
-        else {
-            printf("unexpected option: %s\n", argv[i]);
-            exit(11);
-        }
+    for (int i = 1; i < argc; i+=2) {
+        if(argcomp(argv, i, "-c", &category)) continue;
+        if(argcomp(argv, i, "-C", &comment)) continue;
+        if(argcomp(argv, i, "-e", &executable)) continue;
+        if(argcomp(argv, i, "-i", &icon)) continue;
+        if(argcomp(argv, i, "-n", &name)) continue;
+        if(argcomp(argv, i, "-a", &appendix)) continue;
+        printf("unexpected option: %s\n", argv[i]);
+        exit(11);
     }
     if (!executable && !name){
         printf("missing name or executable\n");
